@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DefaultTemplate } from '@/template'
-import { mdiPlusCircle, mdiTrashCan } from '@mdi/js'
+import { mdiPlusCircle, mdiTrashCan, mdiFileEdit } from '@mdi/js'
 import type { IStatus, GetStatusListRequest, GetStatusListResponse } from '@/interfaces/status'
 import request from '@/engine/httpClient'
 import { useToastStore } from '@/stores'
 
 const toastStore = useToastStore()
-
 const isLoadingList = ref<boolean>(false)
-const itemsPerPage = ref<number>(10)
+const itemsPerPage = ref<number>(50)
 const total = ref<number>(0)
 const page = ref<number>(1)
 const items = ref<IStatus[]>([])
@@ -61,23 +60,19 @@ const deleteListItem = async (item: IStatus) => {
 
   if (!shouldDelete) return
 
-  try {
-    const response = await request<null, null>({
-      method: 'DELETE',
-      endpoint: `status/delete/${item.id}`
-    })
+  const response = await request<null, null>({
+    method: 'DELETE',
+    endpoint: `status/delete/${item.id}`
+  })
 
-    if (response.isError) return
+  if (response.isError) return
 
-    toastStore.setToast({
-      type: 'success',
-      text: 'Status deletada com sucesso!'
-    })
+  toastStore.setToast({
+    type: 'success',
+    text: 'Status deletada com sucesso!'
+  })
 
-    loadDataTable()
-  } catch (e) {
-    console.error('Falha ao deletar item da lista', e)
-  }
+  loadDataTable()
 }
 </script>
 
@@ -102,6 +97,19 @@ const deleteListItem = async (item: IStatus) => {
         @update:options="handleDataTableUpdate"
       >
         <template #[`item.actions`]="{ item }">
+          <v-tooltip text="Editar status" location="left">
+            <template #activator="{ props }">
+              <v-btn
+                v-bind="props"
+                :icon="mdiFileEdit"
+                size="small"
+                color="error"
+                class="mr-2"
+                :to="{ name: 'status-update', params: { id: item.id } }"
+              />
+            </template>
+          </v-tooltip>
+
           <v-tooltip text="Deletar status" location="left">
             <template #activator="{ props }">
               <v-btn

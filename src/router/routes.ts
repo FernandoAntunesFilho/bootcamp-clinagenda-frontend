@@ -5,6 +5,7 @@ export const routes = [
     component: () =>
       import(/* webpackChunkName: "dashboard" */ '@/pages/dashboard/DashboardPage.vue')
   },
+  // Status
   {
     path: '/status',
     name: 'status-list',
@@ -16,6 +17,12 @@ export const routes = [
     component: () => import(/* webpackChunkName: "status" */ '@/pages/status/StatusFormPage.vue')
   },
   {
+    path: '/status/update/:id',
+    name: 'status-update',
+    component: () => import(/* webpackChunkName: "status" */ '@/pages/status/StatusFormPage.vue')
+  },
+  // Specialty
+  {
     path: '/specialty',
     name: 'specialty-list',
     component: () =>
@@ -25,6 +32,12 @@ export const routes = [
     path: '/specialty/insert',
     name: 'specialty-insert',
     component: () =>
-      import(/* webpackChunkName: "status" */ '@/pages/specialty/SpecialtyFormPage.vue')
+      import(/* webpackChunkName: "specialty" */ '@/pages/specialty/SpecialtyFormPage.vue')
+  },
+  {
+    path: '/specialty/update/:id',
+    name: 'specialty-update',
+    component: () =>
+      import(/* webpackChunkName: "specialty" */ '@/pages/specialty/SpecialtyFormPage.vue')
   }
 ]
