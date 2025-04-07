@@ -1,5 +1,5 @@
 export interface IStatus {
-  id: number
+  id: string
   name: string
 }
 
