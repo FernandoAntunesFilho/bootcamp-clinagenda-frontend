@@ -42,7 +42,7 @@ export const routes = [
   },
   // Patient
   {
-    path: '/patient',
+    path: '/patient/list',
     name: 'patient-list',
     component: () => import(/* webpackChunkName: "patient" */ '@/pages/patient/PatientListPage.vue')
   },
@@ -50,10 +50,10 @@ export const routes = [
     path: '/patient/insert',
     name: 'patient-insert',
     component: () => import(/* webpackChunkName: "patient" */ '@/pages/patient/PatientFormPage.vue')
+  },
+  {
+    path: '/patient/update/:id',
+    name: 'patient-update',
+    component: () => import(/* webpackChunkName: "patient" */ '@/pages/patient/PatientFormPage.vue')
   }
-  // {
-  //   path: '/patient/update/:id',
-  //   name: 'patient-update',
-  //   component: () => import(/* webpackChunkName: "patient" */ '@/pages/patient/PatientFormPage.vue')
-  // }
 ]

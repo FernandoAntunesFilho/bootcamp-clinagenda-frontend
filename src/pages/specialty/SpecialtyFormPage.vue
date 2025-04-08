@@ -18,8 +18,7 @@ const id = route.params.id
 const pageMode = id ? PageMode.PAGE_UPDATE : PageMode.PAGE_INSERT
 
 const form = ref<SpecialtyForm>({
-  name: '',
-  scheduleDuration: ''
+  name: ''
 })
 
 const pageTitle = computed(() => {
@@ -50,9 +49,10 @@ const loadForm = async () => {
   if (pageMode === PageMode.PAGE_INSERT) return
 
   isLoadingForm.value = true
+
   const specialtyFormResponse = await request<undefined, SpecialtyForm>({
     method: 'GET',
-    endpoint: `specialty/listById/${id}`
+    endpoint: `specialty/update/${id}`
   })
 
   if (specialtyFormResponse?.isError) return
@@ -67,7 +67,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <default-template>
+  <DefaultTemplate>
     <template #title>
       {{ pageTitle }}
     </template>
@@ -89,5 +89,5 @@ onMounted(() => {
         </v-col>
       </v-row>
     </v-form>
-  </default-template>
+  </DefaultTemplate>
 </template>

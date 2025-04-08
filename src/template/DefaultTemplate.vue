@@ -2,11 +2,11 @@
 import { computed, ref, useSlots } from 'vue'
 import ClinicToast from '@/components/ClinicToast.vue'
 import {
+  mdiAccountInjuryOutline,
   mdiAccountTag,
   mdiHome,
   mdiLogout,
-  mdiShapeOutline,
-  mdiAccountInjuryOutline
+  mdiShapeOutline
 } from '@mdi/js'
 
 const drawer = ref(true)

@@ -41,7 +41,6 @@ const submitForm = async () => {
   })
 
   router.push({ name: 'status-list' })
-
   isLoadingForm.value = false
 }
 
@@ -51,7 +50,7 @@ const loadForm = async () => {
   isLoadingForm.value = true
   const statusFormResponse = await request<undefined, StatusForm>({
     method: 'GET',
-    endpoint: `status/listById/${id}`
+    endpoint: `status/update/${id}`
   })
 
   if (statusFormResponse?.isError) return

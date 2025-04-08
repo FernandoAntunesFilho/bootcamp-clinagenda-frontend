@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DefaultTemplate } from '@/template'
-import { mdiPlusCircle, mdiTrashCan, mdiFileEdit } from '@mdi/js'
+import { mdiPlusCircle, mdiTrashCan } from '@mdi/js'
 import type {
   ISpecialty,
   GetSpecialtyListRequest,
@@ -79,6 +79,21 @@ const deleteListItem = async (item: ISpecialty) => {
     text: 'Especialidade deletada com sucesso!'
   })
 
+  toastStore.setToast({
+    type: 'success',
+    text: 'Especialidade deletada com sucesso!'
+  })
+
+  toastStore.setToast({
+    type: 'success',
+    text: 'Especialidade deletada com sucesso!'
+  })
+
+  toastStore.setToast({
+    type: 'success',
+    text: 'Especialidade deletada com sucesso!'
+  })
+
   loadDataTable()
 }
 </script>
@@ -116,21 +131,10 @@ const deleteListItem = async (item: ISpecialty) => {
         item-value="id"
         @update:options="handleDataTableUpdate"
       >
-        <template #[`item.scheduleDuration`]="{ item }"> {{ item.scheduleDuration }} min </template>
+        <template #[`item.scheduleDuration`]="{ item }">
+          {{ item.scheduleDuration }} mininutos
+        </template>
         <template #[`item.actions`]="{ item }">
-          <v-tooltip text="Editar especialidade" location="left">
-            <template #activator="{ props }">
-              <v-btn
-                v-bind="props"
-                :icon="mdiFileEdit"
-                size="small"
-                color="error"
-                class="mr-2"
-                :to="{ name: 'specialty-update', params: { id: item.id } }"
-              />
-            </template>
-          </v-tooltip>
-
           <v-tooltip text="Deletar especialidade" location="left">
             <template #activator="{ props }">
               <v-btn

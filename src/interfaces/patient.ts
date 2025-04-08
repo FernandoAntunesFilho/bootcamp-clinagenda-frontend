@@ -3,9 +3,9 @@ import type { IStatus } from './status'
 export interface IPatient {
   id: number
   name: string
-  phoneNumber: string
   documentNumber: string
-  bithDate: string
+  phoneNumber: string
+  birthDate: string
   status: IStatus
 }
 
@@ -14,7 +14,7 @@ export type GetPatientListRequest = {
   page: number
   name: IPatient['name']
   documentNumber: IPatient['documentNumber']
-  statusId: string
+  statusId: IStatus['id'] | null
 }
 
 export type GetPatientListResponse = {
@@ -26,6 +26,6 @@ export type PatientForm = {
   name: IPatient['name']
   documentNumber: IPatient['documentNumber']
   phoneNumber: IPatient['phoneNumber']
-  bithDate: IPatient['bithDate']
-  statusId: string
+  birthDate: IPatient['birthDate']
+  statusId: IStatus['id'] | null
 }
