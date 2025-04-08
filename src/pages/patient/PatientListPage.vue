@@ -111,7 +111,7 @@ const deleteListItem = async (item: IPatient) => {
   try {
     const response = await request<null, null>({
       method: 'DELETE',
-      endpoint: `patient/${item.id}`
+      endpoint: `patient/delete/${item.id}`
     })
 
     if (response.isError) return
