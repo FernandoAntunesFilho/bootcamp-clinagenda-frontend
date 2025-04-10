@@ -37,6 +37,11 @@ const menus = ref([
     title: 'Doutores',
     icon: mdiDoctor,
     to: { name: 'doctor-list' }
+  },
+  {
+    title: 'Agendamentos',
+    icon: mdiDoctor,
+    to: { name: 'appointment-list' }
   }
 ])
 

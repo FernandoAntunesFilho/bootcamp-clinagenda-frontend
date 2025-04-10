@@ -71,5 +71,24 @@ export const routes = [
     path: '/doctor/update/:id',
     name: 'doctor-update',
     component: () => import(/* webpackChunkName: "doctor" */ '@/pages/doctor/DoctorFormPage.vue')
+  },
+  // Appointment
+  {
+    path: '/appointment/list',
+    name: 'appointment-list',
+    component: () =>
+      import(/* webpackChunkName: "appointment" */ '@/pages/appointment/AppointmentListPage.vue')
+  },
+  {
+    path: '/appointment/insert',
+    name: 'appointment-insert',
+    component: () =>
+      import(/* webpackChunkName: "appointment" */ '@/pages/appointment/AppointmentListPage.vue') // TODO: Change to AppointmentFormPage.vue
+  },
+  {
+    path: '/appointment/update/:id',
+    name: 'appointment-update',
+    component: () =>
+      import(/* webpackChunkName: "appointment" */ '@/pages/appointment/AppointmentListPage.vue') // TODO: Change to AppointmentFormPage.vue
   }
 ]
