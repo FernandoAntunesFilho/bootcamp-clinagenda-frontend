@@ -201,7 +201,7 @@ onMounted(() => {
         @update:options="handleDataTableUpdate"
       >
         <template #[`item.specialty`]="{ item }">
-          <v-chip v-for="specialty in item.specialty" :key="specialty.id">
+          <v-chip v-for="specialty in item.specialty" :key="specialty.id" class="mr-2">
             {{ specialty.name }}
           </v-chip>
         </template>

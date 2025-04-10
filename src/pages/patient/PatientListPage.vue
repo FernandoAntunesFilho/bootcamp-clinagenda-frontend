@@ -7,14 +7,7 @@ import type { IStatus, GetStatusListResponse } from '@/interfaces/status'
 import request from '@/engine/httpClient'
 import { useToastStore } from '@/stores'
 import { vMaska } from 'maska/vue'
-import {
-  clearMask,
-  dateFormat,
-  DateFormatEnum,
-  documentNumberMask,
-  maskDocumentNumber,
-  maskPhoneNumber
-} from '@/utils'
+import { clearMask, documentNumberMask, maskDocumentNumber, maskPhoneNumber } from '@/utils'
 
 const toastStore = useToastStore()
 
@@ -196,7 +189,7 @@ onMounted(() => {
           <div>{{ maskPhoneNumber(item.phoneNumber) }}</div>
         </template>
         <template #[`item.birthDate`]="{ item }">
-          <div>{{ dateFormat(item.birthDate, DateFormatEnum.FullDate.value) }}</div>
+          <div>{{ item.birthDate }}</div>
         </template>
         <template #[`item.actions`]="{ item }">
           <v-tooltip text="Deletar paciente" location="left">

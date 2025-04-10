@@ -38,12 +38,7 @@ const pageTitle = computed(() => {
 const submitForm = async () => {
   isLoadingForm.value = true
 
-  const body = {
-    ...form.value,
-    specialty: Object.entries(form.value.specialty)
-      .filter(([, value]) => value)
-      .map(([key]) => Number(key))
-  }
+  const body = form.value
 
   const response = await request<DoctorForm, null>({
     method: pageMode == PageMode.PAGE_INSERT ? 'POST' : 'PUT',
@@ -101,7 +96,11 @@ const loadForm = async () => {
   specialtyItems.value = specialtyResponse.data.items
 
   if (pageMode === PageMode.PAGE_UPDATE) {
-    form.value = { ...doctorFormResponse.data, statusId: doctorFormResponse.data.status.id }
+    form.value = {
+      ...doctorFormResponse.data,
+      statusId: doctorFormResponse.data.status.id,
+      specialty: doctorFormResponse.data.specialty.map((item: { id: number }) => item.id)
+    }
   }
 
   isLoadingForm.value = false
@@ -149,8 +148,9 @@ onMounted(() => {
           <v-checkbox
             v-for="specialty in specialtyItems"
             :key="specialty.id"
-            v-model="form.specialty[specialty.id]"
+            v-model="form.specialty"
             :label="specialty.name"
+            :value="specialty.id"
           />
         </v-col>
       </v-row>
